@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "chinesecanfly",
+  "version": "1.0.0",
+  "name": "Chinese Can Fly",
+  "description": "中国人能飞~~~",
+  "authors": [
+    "XHServer"
+  ],
+  "contact": {
+    "homepage": "https://xhserver.qzz.io/",
+    "sources": "https://github.com/xhserver123/chinesecanfly"
+  },
+  "license": "MIT",
+  "icon": "assets/chinesecanfly/icon.png",
+  "entrypoints": {
+    "main": [
+      "io.xhserver.chinesecanfly.ChineseCanFlyMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": ">=0.100.0+1.21.11"
+  }
+}
