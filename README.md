@@ -1,8 +1,7 @@
-# 中国人能飞（Chinese Can Fly）
+# chinesecanfly
+中国人能飞~~~
 
-一个 Minecraft **Fabric 模组**：在聊天框发送「我是中国人」，即可获得飞行能力，自由翱翔！
-
-> 我是中国人，我能飞 🕊️
+一个 Minecraft **Fabric 模组**：
 
 ## 适用版本
 
@@ -28,7 +27,7 @@
 1. 安装 [Fabric Loader](https://fabricmc.net/use/installer/)（≥ 0.19.3）。
 2. 将 [Fabric API](https://modrinth.com/mod/fabric-api)（≥ 0.141.6+1.21.11）放入 `mods` 文件夹。
 3. 将本模组的 `chinesecanfly-1.0.0.jar` 放入 `mods` 文件夹。
-4. 启动游戏，进服后在聊天框发送 `我是中国人` 即可起飞。
+4. 启动游戏，进服后在聊天框发送 `我是中国人` 即可飞起来！。
 
 ## 从源码构建
 
