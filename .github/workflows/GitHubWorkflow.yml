@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    # secrets 不能直接在 if: 中使用，这里先映射为 job 级环境变量
+    env:
+      MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
 
     steps:
       - name: Checkout
@@ -42,12 +45,12 @@ jobs:
 
       # 发布到 Modrinth（仅当设置了 MODRINTH_TOKEN 时执行）
       - name: Publish to Modrinth
-        if: ${{ secrets.MODRINTH_TOKEN != '' }}  # 如果没有Token则跳过
+        if: ${{ env.MODRINTH_TOKEN != '' }}
         uses: Kira-NT/mc-publish@v3
         with:
           # ---------- 必填项 ----------
           modrinth-id: ${{ secrets.MODRINTH_PROJECT_ID }}  # 项目ID存为Secret
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          modrinth-token: ${{ env.MODRINTH_TOKEN }}
 
           # 只上传编译后的主JAR，排除源码、dev、javadoc等
           files: |
@@ -56,8 +59,8 @@ jobs:
           # ---------- 版本信息 ----------
           # 版本号：优先使用输入的tag，去掉前缀v（如v1.0.0 -> 1.0.0）
           version: ${{ github.event.inputs.tag != '' && github.event.inputs.tag || format('{0}+build.{1}', '0.0.0', github.run_number) }}
-          # 版本名称：默认与tag相同，或使用构建号
-          version-name: ${{ github.event.inputs.tag != '' && github.event.inputs.tag || format('Build #{0}', github.run_number) }}
+          # 版本名称：默认与tag相同，或使用构建号（整体加双引号，避免 # 被 YAML 当作注释截断表达式）
+          version-name: "${{ github.event.inputs.tag != '' && github.event.inputs.tag || format('Build #{0}', github.run_number) }}"
 
 
           changelog: ${{ github.event.inputs.tag != '' && format('See [release notes](https://github.com/{0}/releases/tag/{1})', github.repository, github.event.inputs.tag) || 'Manual build' }}
